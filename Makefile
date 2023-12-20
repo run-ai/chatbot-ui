@@ -1,17 +1,3 @@
-
-
-\
-
-
-
-
-
-
-
-
-
-
-
 include .env
 
 .PHONY: all
