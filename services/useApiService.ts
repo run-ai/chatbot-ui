@@ -27,7 +27,11 @@ const useApiService = () => {
 
   const getModels = useCallback(
     (params: GetModelsRequestProps, signal?: AbortSignal) => {
-      return fetchService.post<GetModelsRequestProps>(`/api/models`, {
+      let pathPrefix = process.env.PATH_PREFIX || '';
+      if (pathPrefix && !pathPrefix.startsWith('/')) {
+        pathPrefix = '/' + pathPrefix;
+      }
+      return fetchService.post<GetModelsRequestProps>(`${pathPrefix}/api/models`, {
         body: { key: params.key },
         headers: {
           'Content-Type': 'application/json',
